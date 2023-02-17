@@ -1,0 +1,6 @@
+﻿Browser("name:=OrangeHRM").Page("title:=OrangeHRM").Link("name:= My Info").Click @@ script infofile_;_ZIP::ssf1.xml_;_
+Browser("name:=OrangeHRM").Page("title:=OrangeHRM").WebEdit("xpath:=//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[1]/div[2]/input").Set "John" @@ script infofile_;_ZIP::ssf2.xml_;_
+Browser("name:=OrangeHRM").Page("title:=OrangeHRM").WebEdit("xpath:=//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[3]/div[2]/input").Set "Smith" @@ script infofile_;_ZIP::ssf3.xml_;_
+Browser("name:=OrangeHRM").Page("title:=OrangeHRM").WebEdit("xpath:=//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input").Set "8936" @@ script infofile_;_ZIP::ssf6.xml_;_
+Browser("name:=OrangeHRM").Page("title:=OrangeHRM").WebEdit("xpath:=//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/div[2]/div/div/input").Set "1975-10-17" @@ script infofile_;_ZIP::ssf7.xml_;_
+Browser("name:=OrangeHRM").Page("title:=OrangeHRM").WebButton("xpath:=//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[5]/button").Click @@ script infofile_;_ZIP::ssf8.xml_;_

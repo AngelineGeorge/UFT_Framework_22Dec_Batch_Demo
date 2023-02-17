@@ -1,0 +1,639 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="Micro Focus Unified Functional Testing" productVer="14.50" os="" host="INLEN8520068267"><DocLocation><![CDATA[C:\UFT Framework\QTP-Hybrid-Framework\TestCases\MagicBricks_demo]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus Unified Functional Testing"  >
+<DName><![CDATA[MagicBricks_demo]]></DName>
+<Res><![CDATA[Res4]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Homeloan_Eligibility]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:09]]></Time>
+<TimeTick>1676461929</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA["Real Estate | Property"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:09]]></Time>
+<TimeTick>1676461929</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="11" Source="Homeloan_Eligibility" SourceLine="1" >
+<Disp><![CDATA["Real Estate | Property"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:09]]></Time>
+<TimeTick>1676461929</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Home Loans.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:09]]></Time>
+<TimeTick>1676461929</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="14" Source="Homeloan_Eligibility" SourceLine="1" >
+<Disp><![CDATA[Home Loans.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="13" Source="Homeloan_Eligibility" SourceLine="1" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" Source="Homeloan_Eligibility" SourceLine="1" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Home Loan - Check & Apply]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:11]]></Time>
+<TimeTick>1676461931</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA["Home Loan - Check & Apply"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (3 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (3 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Home Loan - Check & Apply for the Best Suited Housing Loan, Get 90,000* Cashback<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Home Loan - Check & Apply for the Best Suited Housing Loan, Get 90,000* Cashback<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com/homeloan/home?inc=desktop_homeloan_menu_linkage<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Home Loan - Check & Apply for the Best Suited Housing Loan, Get 90,000* Cashback<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=2<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:11]]></Time>
+<TimeTick>1676461931</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="17" Source="Homeloan_Eligibility" SourceLine="2" >
+<Disp><![CDATA["Home Loan - Check & Apply"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Home Loan - Check & Apply]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:11]]></Time>
+<TimeTick>1676461931</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[WebEdit.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["1000000"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:11]]></Time>
+<TimeTick>1676461931</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="20" Source="Homeloan_Eligibility" SourceLine="2" >
+<Disp><![CDATA[WebEdit.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[WebEdit.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7548269123"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="23" Source="Homeloan_Eligibility" SourceLine="3" >
+<Disp><![CDATA[WebEdit.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Check Eligibility.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="26" Source="Homeloan_Eligibility" SourceLine="4" >
+<Disp><![CDATA[Check Eligibility.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="19" Source="Homeloan_Eligibility" SourceLine="2" >
+<Disp><![CDATA[Home Loan - Check & Apply]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="16" Source="Homeloan_Eligibility" SourceLine="2" >
+<Disp><![CDATA[Home Loan - Check & Apply]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 17:22:09" eTime="15-02-2023 - 17:22:12" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="8" >
+<Disp><![CDATA[Homeloan_Eligibility Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T15">
+<AName><![CDATA[Bank_Transfer]]></AName>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA["Real Estate | Property"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (3 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (3 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="31" Source="Bank_Transfer" SourceLine="0" >
+<Disp><![CDATA["Real Estate | Property"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Balance Transfer.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:12]]></Time>
+<TimeTick>1676461932</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="34" Source="Bank_Transfer" SourceLine="0" >
+<Disp><![CDATA[Balance Transfer.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="33" Source="Bank_Transfer" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="30" Source="Bank_Transfer" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Home Loan Balance Transfer:]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:13]]></Time>
+<TimeTick>1676461933</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA["Home Loan Balance Transfer:"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (4 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (4 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Home Loan Balance Transfer: Calculator, Process, Documents Required<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Home Loan Balance Transfer: Calculator, Process, Documents Required<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com/homeloan/balance-transfer?inc=desktop_bt_menu_linkage<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Home Loan Balance Transfer: Calculator, Process, Documents Required<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=2<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:13]]></Time>
+<TimeTick>1676461933</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="37" Source="Bank_Transfer" SourceLine="1" >
+<Disp><![CDATA["Home Loan Balance Transfer:"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Home Loan Balance Transfer:]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:13]]></Time>
+<TimeTick>1676461933</TimeTick>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[WebEdit.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["2,50,000"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:13]]></Time>
+<TimeTick>1676461933</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="40" Source="Bank_Transfer" SourceLine="1" >
+<Disp><![CDATA[WebEdit.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[WebEdit_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["4"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:13]]></Time>
+<TimeTick>1676461933</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="43" Source="Bank_Transfer" SourceLine="2" >
+<Disp><![CDATA[WebEdit_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[WebEdit_3.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["11"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="46" Source="Bank_Transfer" SourceLine="3" >
+<Disp><![CDATA[WebEdit_3.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[WebEdit_4.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["35"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="49" Source="Bank_Transfer" SourceLine="4" >
+<Disp><![CDATA[WebEdit_4.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[WebEdit_5.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["10"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="52" Source="Bank_Transfer" SourceLine="5" >
+<Disp><![CDATA[WebEdit_5.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[WebEdit_6.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["5"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="55" Source="Bank_Transfer" SourceLine="6" >
+<Disp><![CDATA[WebEdit_6.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[WebEdit_7.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="58" Source="Bank_Transfer" SourceLine="7" >
+<Disp><![CDATA[WebEdit_7.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Compare.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="61" Source="Bank_Transfer" SourceLine="8" >
+<Disp><![CDATA[Compare.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="39" Source="Bank_Transfer" SourceLine="1" >
+<Disp><![CDATA[Home Loan Balance Transfer:]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="36" Source="Bank_Transfer" SourceLine="1" >
+<Disp><![CDATA[Home Loan Balance Transfer:]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 17:22:12" eTime="15-02-2023 - 17:22:14" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="28" >
+<Disp><![CDATA[Bank_Transfer Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T31">
+<AName><![CDATA[EMI_calculator]]></AName>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA["Real Estate | Property"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (4 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (4 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="66" Source="EMI_calculator" SourceLine="0" >
+<Disp><![CDATA["Real Estate | Property"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Home Loan EMI Calculator.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:14]]></Time>
+<TimeTick>1676461934</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="69" Source="EMI_calculator" SourceLine="0" >
+<Disp><![CDATA[Home Loan EMI Calculator.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="68" Source="EMI_calculator" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="65" Source="EMI_calculator" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Home Loan EMI Calculator:]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:15]]></Time>
+<TimeTick>1676461935</TimeTick>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA["Home Loan EMI Calculator:"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (5 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (5 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Home Loan EMI Calculator: Calculate Home Loan Interest & EMI Online<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Home Loan EMI Calculator: Calculate Home Loan Interest & EMI Online<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com/homeloan/emi-calculator<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Home Loan EMI Calculator: Calculate Home Loan Interest & EMI Online<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=2<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:15]]></Time>
+<TimeTick>1676461935</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="72" Source="EMI_calculator" SourceLine="1" >
+<Disp><![CDATA["Home Loan EMI Calculator:"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Home Loan EMI Calculator:]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:15]]></Time>
+<TimeTick>1676461935</TimeTick>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[WebEdit.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["13,00,000"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:15]]></Time>
+<TimeTick>1676461935</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="75" Source="EMI_calculator" SourceLine="1" >
+<Disp><![CDATA[WebEdit.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[WebEdit_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="78" Source="EMI_calculator" SourceLine="2" >
+<Disp><![CDATA[WebEdit_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[WebEdit_3.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["13"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="81" Source="EMI_calculator" SourceLine="3" >
+<Disp><![CDATA[WebEdit_3.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Calculate Your EMI.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="84" Source="EMI_calculator" SourceLine="4" >
+<Disp><![CDATA[Calculate Your EMI.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="74" Source="EMI_calculator" SourceLine="1" >
+<Disp><![CDATA[Home Loan EMI Calculator:]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="71" Source="EMI_calculator" SourceLine="1" >
+<Disp><![CDATA[Home Loan EMI Calculator:]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 17:22:14" eTime="15-02-2023 - 17:22:16" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="63" >
+<Disp><![CDATA[EMI_calculator Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T43">
+<AName><![CDATA[Prepayment_calculator]]></AName>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA["Real Estate | Property"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (5 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (5 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Real Estate | Property in India | Buy/Sale/Rent Properties | MagicBricks<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="89" Source="Prepayment_calculator" SourceLine="0" >
+<Disp><![CDATA["Real Estate | Property"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Real Estate | Property]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[Home Loan Prepayment.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:16]]></Time>
+<TimeTick>1676461936</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="92" Source="Prepayment_calculator" SourceLine="0" >
+<Disp><![CDATA[Home Loan Prepayment.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="91" Source="Prepayment_calculator" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="88" Source="Prepayment_calculator" SourceLine="0" >
+<Disp><![CDATA[Real Estate | Property]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[Home Loan Prepayment Calculato]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:17]]></Time>
+<TimeTick>1676461937</TimeTick>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA["Home Loan Prepayment Calculato"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (6 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (6 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Home Loan Prepayment Calculator - Calculate Prepayment Loan Online<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Home Loan Prepayment Calculator - Calculate Prepayment Loan Online<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://www.magicbricks.com/homeloan/prepayment-calculator<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Home Loan Prepayment Calculator - Calculate Prepayment Loan Online<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=2<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:17]]></Time>
+<TimeTick>1676461937</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="95" Source="Prepayment_calculator" SourceLine="1" >
+<Disp><![CDATA["Home Loan Prepayment Calculato"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[Home Loan Prepayment Calculato]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:17]]></Time>
+<TimeTick>1676461937</TimeTick>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[WebEdit.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["15,00,000"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:17]]></Time>
+<TimeTick>1676461937</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="98" Source="Prepayment_calculator" SourceLine="1" >
+<Disp><![CDATA[WebEdit.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[WebEdit_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["12"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:17]]></Time>
+<TimeTick>1676461937</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="101" Source="Prepayment_calculator" SourceLine="2" >
+<Disp><![CDATA[WebEdit_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[WebEdit_3.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:18]]></Time>
+<TimeTick>1676461938</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="104" Source="Prepayment_calculator" SourceLine="3" >
+<Disp><![CDATA[WebEdit_3.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[WebEdit_4.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["20"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:18]]></Time>
+<TimeTick>1676461938</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="107" Source="Prepayment_calculator" SourceLine="4" >
+<Disp><![CDATA[WebEdit_4.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[WebEdit_5.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["2,00,000"]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:18]]></Time>
+<TimeTick>1676461938</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="110" Source="Prepayment_calculator" SourceLine="5" >
+<Disp><![CDATA[WebEdit_5.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[Calculate.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 17:22:18]]></Time>
+<TimeTick>1676461938</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="113" Source="Prepayment_calculator" SourceLine="6" >
+<Disp><![CDATA[Calculate.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="97" Source="Prepayment_calculator" SourceLine="1" >
+<Disp><![CDATA[Home Loan Prepayment Calculato]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="94" Source="Prepayment_calculator" SourceLine="1" >
+<Disp><![CDATA[Home Loan Prepayment Calculato]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 17:22:16" eTime="15-02-2023 - 17:22:18" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="86" >
+<Disp><![CDATA[Prepayment_calculator Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" >
+<Disp><![CDATA[MagicBricks_demo Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="15-02-2023 - 17:22:06" eTime="15-02-2023 - 17:22:18" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" >
+<Disp><![CDATA[Test MagicBricks_demo Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
